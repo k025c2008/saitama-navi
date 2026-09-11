@@ -1,0 +1,515 @@
+@charset "UTF-8";
+
+/* ==========================================
+   埼玉ナビ - 地図＆イベントデザイン
+   ========================================== */
+:root {
+  --ocean: #f3faf9;
+  --ocean-deep: #e6f3f1;
+  --surface: #ffffff;
+  --yellow: #ffd84d;
+  --yellow-soft: #fff6d9;
+  --yellow-deep: #c49300;
+  
+  --text-main: #112222;
+  --text-sub: #445555;
+  --line: #c2ded9;
+
+  --akane-red: #b82a2a;
+  --akane-red-hover: #961e1e;
+
+  /* 季節ごとのテーマカラー */
+  --spring-color: #e85a71;
+  --spring-bg: #ffeef2;
+  --summer-color: #2b9348;
+  --summer-bg: #e8f5e9;
+  --autumn-color: #d97706;
+  --autumn-bg: #fffbe3;
+  --winter-color: #0284c7;
+  --winter-bg: #e0f2fe;
+
+  --shadow-sm: 0 4px 12px rgba(17, 34, 34, 0.08);
+  --shadow-md: 0 8px 24px rgba(17, 34, 34, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--ocean) !important;
+  color: var(--text-main);
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================
+   ヘッダー & ナビゲーション
+   ========================================== */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1.5px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--akane-red);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  padding-bottom: 4px;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--akane-red);
+  border-bottom: 2px solid var(--akane-red);
+}
+
+/* メインコンテンツエリア */
+.main-content {
+  max-width: 1050px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* タイトル & カウントダウン */
+.page-title-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-family: "Shippori Mincho", serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.page-subtitle {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+}
+
+.countdown-banner {
+  background: var(--yellow-soft);
+  border: 1.5px solid var(--yellow-deep);
+  border-radius: 50px;
+  padding: 6px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.cd-label { font-size: 0.85rem; color: var(--text-sub); }
+.cd-time { font-size: 1.05rem; color: var(--akane-red); }
+
+/* 検索バー & フィルター */
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-bar input,
+.search-bar button,
+.filter-btn,
+.spot-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 240px;
+  max-width: 440px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background-color: var(--surface);
+  color: var(--text-main);
+}
+
+.btn-search {
+  background: var(--akane-red);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.btn-search:hover {
+  background: var(--akane-red-hover);
+}
+
+.btn-gps {
+  background: var(--yellow-soft);
+  color: var(--text-main);
+  border: 1.5px solid var(--yellow-deep);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.btn-reset {
+  background: var(--surface);
+  color: var(--text-sub);
+  border: 1.5px solid var(--line);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* 季節フィルタータブ */
+.season-filter {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  color: var(--text-sub);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--yellow-soft);
+  border-color: var(--yellow-deep);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+/* サイドバー + 地図エリア */
+.map-layout {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 3rem;
+}
+
+.matsuri-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.matsuri-sidebar h2 {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--yellow-deep);
+}
+
+.matsuri-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.spot-btn {
+  width: 100%;
+  text-align: left;
+  background: var(--ocean);
+  border: 1px solid var(--line);
+  border-left: 4px solid transparent;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.spot-btn:hover,
+.spot-btn.active {
+  background: var(--yellow-soft);
+  border-color: var(--yellow-deep);
+  border-left: 4px solid var(--yellow-deep);
+}
+
+.spot-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+.spot-area {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.map-area {
+  flex: 1;
+  width: 100%;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  min-height: 460px;
+}
+
+.google-map {
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  display: block;
+}
+
+/* カード一覧 */
+.info-section {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.season-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.season-badge.spring { background: var(--spring-bg); color: var(--spring-color); }
+.season-badge.summer { background: var(--summer-bg); color: var(--summer-color); }
+.season-badge.autumn { background: var(--autumn-bg); color: var(--autumn-color); }
+.season-badge.winter { background: var(--winter-bg); color: var(--winter-color); }
+
+.status-badge.active {
+  background: var(--ocean-deep);
+  color: #1b6354;
+  border: 1px solid var(--line);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.info-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.info-card .meta {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin: 4px 0;
+}
+
+.info-card .desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-top: 10px;
+  color: var(--text-main);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.btn-route, .btn-share {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-route {
+  background: var(--ocean-deep);
+  color: var(--text-main);
+  border: 1px solid var(--line);
+}
+
+.btn-route:hover {
+  background: var(--yellow-soft);
+  border-color: var(--yellow-deep);
+}
+
+.btn-share {
+  background: var(--surface);
+  color: var(--text-sub);
+  border: 1px solid var(--line);
+}
+
+.btn-share:hover {
+  background: var(--ocean);
+  color: var(--text-main);
+}
+
+/* ==========================================
+   フッター
+   ========================================== */
+.site-footer {
+  background: #1e293b;
+  color: #f8fafc;
+  margin-top: 4rem;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1050px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: "Shippori Mincho", serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.copyright {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; gap: 0.8rem; }
+  .site-nav ul { gap: 1rem; font-size: 0.85rem; }
+  .map-layout { flex-direction: column; }
+  .matsuri-sidebar { width: 100%; }
+}

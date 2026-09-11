@@ -1,0 +1,869 @@
+/* =========================================================
+   埼玉ナビ「季節」ページ専用CSS
+   home.cssとの競合を避けるため、季節ページ専用の指定を優先
+   ========================================================= */
+
+
+/* =========================================================
+   1. 基本設定
+   ========================================================= */
+
+:root {
+    --kisetsu-text: #2c3e50;
+    --kisetsu-text-soft: #666666;
+    --kisetsu-yellow: #f39c12;
+
+    /* ヘッダー・背景・フッターを統一 */
+    --kisetsu-ocean-deep: #f3faf9;
+
+    --kisetsu-line: #dcece9;
+    --kisetsu-serif: "Shippori Mincho", serif;
+    --kisetsu-yellow-deep: #e0a800;
+}
+
+/* home.css の body 設定による影響を抑える */
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+    background-color: #f3faf9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    overflow-x: auto;
+}
+/* =========================================================
+   2. ヘッダー
+   ========================================================= */
+
+body > header.site-head {
+    position: sticky;
+    top: -20px;
+    z-index: 20;
+
+    width: calc(100% + 40px);
+    max-width: none;
+
+    background: rgba(243, 250, 249, .92);
+    backdrop-filter: blur(8px);
+
+    border-bottom: 1px solid #dcece9;
+
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+
+/* ロゴ＋ナビ */
+
+body > header.site-head .head-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: .3rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+
+/* ロゴ */
+
+body > header.site-head .logo {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   3. メインナビゲーション
+   ========================================================= */
+
+body > header.site-head .site-nav {
+    display: flex;
+    gap: .7rem;
+    flex-wrap: wrap;
+}
+
+
+/* ナビボタン */
+
+body > header.site-head .site-nav a {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+
+    font-size: .88rem;
+    font-weight: 700;
+
+    color: #5b6d6d;
+    background: #ffffff;
+
+    border: 1px solid #dcece9;
+    border-radius: 999px;
+
+    padding: .45rem 1rem;
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        border-color .2s,
+        background .2s,
+        color .2s;
+}
+
+
+/* マウスを乗せたとき */
+
+body > header.site-head .site-nav a:hover {
+    color: #223333;
+    border-color: #ffd84d;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 20px -14px rgba(34, 51, 51, .4);
+}
+
+
+/* 現在いるページ */
+
+body > header.site-head .site-nav a[aria-current="page"] {
+    color: #223333;
+    background: #fff6d9;
+    border-color: #ffd84d;
+}
+
+
+/* =========================================================
+   4. ページタイトル
+   ========================================================= */
+
+body > h1 {
+    text-align: center;
+
+    color: var(--kisetsu-text);
+
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   5. 見出し
+   ========================================================= */
+
+body > main.content-container h2 {
+    border-left: 5px solid var(--kisetsu-yellow);
+    padding-left: 10px;
+
+    color: var(--kisetsu-text);
+}
+
+/* =========================================================
+   季節ごとの見出しカラー
+   左側の「｜」だけ色を変更
+   ========================================================= */
+
+/* 春 */
+body > main.content-container #spring h2 {
+    color: var(--kisetsu-text);
+    border-left-color: #f4a6bd;
+}
+
+/* 夏 */
+body > main.content-container #summer h2 {
+    color: var(--kisetsu-text);
+    border-left-color: #7ac8e8;
+}
+
+/* 秋 */
+body > main.content-container #autumn h2 {
+    color: var(--kisetsu-text);
+    border-left-color: #e6a04b;
+}
+
+/* 冬 */
+body > main.content-container #winter h2 {
+    color: var(--kisetsu-text);
+    border-left-color: #91b9df;
+}
+/* =========================================================
+   6. 季節絞り込みボタン
+   ========================================================= */
+
+body > .season-selector {
+    padding: 15px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+/* 季節ボタン */
+
+body > .season-selector .links a {
+    display: inline-block;
+
+    padding: 10px 20px;
+    margin: 5px;
+
+    text-decoration: none;
+
+    color: #555;
+    background: #ffffff;
+
+    border: 1px solid transparent;
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    transition: all .3s ease;
+}
+
+
+/* 春 */
+
+body > .season-selector .links a.btn-spring:hover {
+    color: #8b3a62;
+    background: #ffe4ec;
+    border-color: #f4a6bd;
+}
+
+
+/* 夏 */
+
+body > .season-selector .links a.btn-summer:hover {
+    color: #176b87;
+    background: #dff5ff;
+    border-color: #7ac8e8;
+}
+
+
+/* 秋 */
+
+body > .season-selector .links a.btn-autumn:hover {
+    color: #8a4b08;
+    background: #fff0d6;
+    border-color: #e6a04b;
+}
+
+
+/* 冬 */
+
+body > .season-selector .links a.btn-winter:hover {
+    color: #315b83;
+    background: #e5f1ff;
+    border-color: #91b9df;
+}
+
+
+/* =========================================================
+   7. 選択中の季節
+   ========================================================= */
+
+body:has(#spring:target) > .season-selector .btn-spring {
+    color: #8b3a62;
+    background: #ffe4ec;
+    border-color: #f4a6bd;
+}
+
+
+body:has(#summer:target) > .season-selector .btn-summer {
+    color: #176b87;
+    background: #dff5ff;
+    border-color: #7ac8e8;
+}
+
+
+body:has(#autumn:target) > .season-selector .btn-autumn {
+    color: #8a4b08;
+    background: #fff0d6;
+    border-color: #e6a04b;
+}
+
+
+body:has(#winter:target) > .season-selector .btn-winter {
+    color: #315b83;
+    background: #e5f1ff;
+    border-color: #91b9df;
+}
+
+
+/* =========================================================
+   8. メインコンテンツ
+   ========================================================= */
+
+
+/*
+   home.css の
+   .wrap
+   section
+   .card
+   などの影響を受けないようにする
+*/
+
+body > main.content-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   9. カード4列グリッド
+   ========================================================= */
+
+body > main.content-container .grid-4cols {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   10. 季節カード
+   ========================================================= */
+
+
+/*
+   home.cssにも .card が存在するため、
+   content-container配下だけを対象にする。
+*/
+
+body > main.content-container .card {
+    display: block;
+
+    background: #ffffff;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, .08);
+
+    position: relative;
+
+    border-top: 4px solid #ccc;
+
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+    overflow: visible;
+
+    transform: none;
+}
+
+
+/*
+   home.css の .card:hover を上書きして、
+   季節ページ側の見た目を維持
+*/
+
+body > main.content-container .card {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+/* 写真にマウスを乗せたとき */
+
+body > main.content-container .card:has(img:hover) {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, .12);
+}
+
+/* =========================================================
+   11. カードタイトル
+   ========================================================= */
+
+body > main.content-container .card h3 {
+    font-family: inherit;
+
+    font-size: 1.17em;
+    font-weight: bold;
+
+    color: #333;
+
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    letter-spacing: normal;
+}
+
+
+/* =========================================================
+   12. カード画像
+   ========================================================= */
+
+body > main.content-container .card img {
+    width: 100%;
+    height: auto;
+
+    border-radius: 4px;
+
+    display: block;
+
+    object-fit: initial;
+}
+
+
+/* =========================================================
+   13. カード本文
+   ========================================================= */
+
+body > main.content-container .card p {
+    color: #111111;
+
+    font-family: inherit;
+
+    font-size: .95rem;
+
+    line-height: 1.6;
+
+    padding: 0;
+
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   14. 写真クレジット
+   ========================================================= */
+
+body > main.content-container .card p.photo-credit {
+    font-size: .75rem;
+
+    color: #777777;
+
+    margin-top: 6px;
+    margin-bottom: 8px;
+
+    text-align: right;
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   15. 季節表示切り替え
+   ========================================================= */
+
+body > main.content-container .season-detail {
+    display: none;
+
+    animation: fadeInUp .5s ease forwards;
+
+    scroll-margin-top: 350px;
+}
+
+
+/* 初期表示 */
+
+body > main.content-container .default-view {
+    display: block;
+}
+
+
+/* 季節が選択された場合 */
+
+body > main.content-container .season-detail:target {
+    display: block;
+}
+
+
+/* 季節選択中は初期表示を非表示 */
+
+body > main.content-container:has(.season-detail:target) .default-view {
+    display: none;
+}
+
+
+/* =========================================================
+   16. フェードアニメーション
+   ========================================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   17. 季節バッジ
+   ========================================================= */
+
+body > main.content-container .badge {
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    font-size: .8rem;
+
+    padding: 2px 8px;
+
+    border-radius: 10px;
+
+    background: #eee;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   18. 「全ての季節へ戻る」ボタン
+   ========================================================= */
+
+body > .btn-back-to-home {
+    position: fixed;
+
+    bottom: 20px;
+    right: 20px;
+
+    background-color: #333333;
+    color: #ffffff;
+
+    padding: 12px 18px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, .2);
+
+    transition: all .3s ease;
+
+    z-index: 1000;
+}
+
+
+body > .btn-back-to-home:hover {
+    background-color: #555555;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, .3);
+}
+
+
+/* =========================================================
+   詳細を見るボタン
+   ========================================================= */
+
+body > main.content-container .detail-button {
+    display: block;
+
+    width: fit-content;
+
+    margin-top: 15px;
+    margin-left: auto;
+
+    padding: 9px 22px;
+
+    background: #c99a2e;
+    color: #ffffff;
+
+    border: 1px solid #b38724;
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    font-size: .9rem;
+    font-weight: bold;
+
+    box-shadow:
+        0 3px 8px rgba(34, 51, 51, .15);
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+/* マウスを乗せたとき */
+
+body > main.content-container .detail-button:hover {
+    background: #a77d20;
+    color: #ffffff;
+
+    transform: translateY(2px);
+
+    box-shadow:
+        0 1px 2px rgba(34, 51, 51, .12);
+
+    border-color: #966f1b;
+}
+
+
+
+/* =========================================================
+   19. フッター
+   ========================================================= */
+
+
+/*
+   home.css の footer と同じデザインを維持しつつ、
+   bodyのpaddingによって左右が狭くならないようにする。
+*/
+
+body > footer {
+    background: var(--kisetsu-ocean-deep);
+
+    border-top: 1px solid var(--kisetsu-line);
+
+    padding: 2.6rem 0 2.2rem;
+
+    margin-left: -20px;
+    margin-right: -20px;
+
+    width: auto;
+
+    box-sizing: border-box;
+}
+
+
+/* フッター内部 */
+
+body > footer .foot-inner {
+    max-width: 1140px;
+
+    margin: 0 auto;
+
+    padding: 0 1.5rem;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 1.2rem;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* フッターブランド */
+
+body > footer .foot-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+}
+
+
+body > footer .foot-brand b {
+    font-family: var(--kisetsu-serif);
+
+    font-size: 1.05rem;
+
+    color: var(--kisetsu-text);
+
+    letter-spacing: .08em;
+}
+
+
+/* フッターリンク */
+
+body > footer .foot-nav {
+    display: flex;
+
+    gap: 1.2rem;
+
+    flex-wrap: wrap;
+}
+
+
+body > footer .foot-nav a {
+    font-size: .9rem;
+
+    color: var(--kisetsu-text-soft);
+}
+
+
+body > footer .foot-nav a:hover {
+    color: var(--kisetsu-yellow-deep);
+}
+
+
+/* フッター注意書き */
+
+body > footer .foot-note {
+    width: 100%;
+
+    margin-top: .3rem;
+
+    font-size: .78rem;
+
+    color: var(--kisetsu-text-soft);
+}
+
+
+/* =========================================================
+   20. フッター「祭」マーク
+   ========================================================= */
+
+body > footer .seal {
+    display: inline-grid;
+
+    place-items: center;
+
+    width: 2.4rem;
+    height: 2.4rem;
+
+    background: #ffd84d;
+
+    color: var(--kisetsu-text);
+
+    font-family: var(--kisetsu-serif);
+
+    font-weight: 700;
+
+    font-size: 1.3rem;
+
+    transform: rotate(-3deg);
+
+    box-shadow:
+        0 2px 0 rgba(34, 51, 51, .12);
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   21. home.css の汎用 .card との競合対策
+   ========================================================= */
+
+
+/*
+   home.css の .card-photo などが、
+   季節ページの画像に影響しないようにする。
+*/
+
+body > main.content-container .card .card-photo {
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+}
+
+
+/*
+   home.css の .card h3, .card p による
+   padding指定を無効化
+*/
+
+body > main.content-container .card h3,
+body > main.content-container .card p {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* =========================================================
+   22. スマートフォン対応
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    body {
+        min-width: 0;
+        padding: 10px;
+    }
+
+    body > header.site-head {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    body > footer {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    body > header.site-head .head-inner {
+        flex-direction: column;
+        gap: .8rem;
+    }
+
+    body > header.site-head .site-nav {
+        justify-content: center;
+        gap: .4rem;
+    }
+
+    body > header.site-head .site-nav a {
+        font-size: .8rem;
+        padding: .35rem .7rem;
+    }
+
+    body > main.content-container .grid-4cols {
+        grid-template-columns: 1fr;
+    }
+
+    body > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* =========================================================
+   23. 動きを減らす設定
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    body > main.content-container .season-detail {
+        animation: none;
+    }
+
+    body > main.content-container .card:hover {
+        transform: none;
+    }
+
+    body > .btn-back-to-home:hover {
+        transform: none;
+    }
+}

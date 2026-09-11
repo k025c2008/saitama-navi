@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>埼玉めぐりマップ | 埼玉ナビ</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+  <!-- CSS読み込み -->
+  <link rel="stylesheet" href="../css/chizu.css">
+</head>
+<body>
+
+  <!-- 🌐 共通ヘッダー (同じ html/ フォルダ内の各ページへ正しくリンク) -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="home.html" class="site-logo">埼玉ナビ</a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="home .html">ホーム</a></li>
+          <li><a href="chizu.html" class="active">マップ・祭り</a></li>
+          <li><a href="kisetsu.html">季節</a></li>
+          <li><a href="rekisi.html">歴史</a></li>
+          <li><a href="keijiban.html">掲示板</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="page-title-section">
+      <h1 class="page-title">埼玉めぐりマップ</h1>
+      <p class="page-subtitle">季節ごとの魅力的な祭りやスポットの検索・ルート案内ができます</p>
+      
+      <!-- カウントダウンバナー -->
+      <div class="countdown-banner">
+        <span class="cd-label">🏮 次のビッグイベント（川越まつり）まで</span>
+        <span id="countdownTimer" class="cd-time">計算中...</span>
+      </div>
+    </div>
+
+    <!-- 検索 ＆ フィルターバー -->
+    <div class="search-section">
+      <form id="mapSearchForm" class="search-bar">
+        <input type="text" id="searchInput" placeholder="例: 大宮駅、秩父神社、川越、長瀞..." required>
+        <button type="submit" class="btn-search">検索</button>
+        <button type="button" id="btnGPS" class="btn-gps">📍 現在地</button>
+        <button type="button" id="resetBtn" class="btn-reset">リセット</button>
+      </form>
+
+      <!-- 季節フィルター -->
+      <div class="season-filter">
+        <button type="button" class="filter-btn active" data-season="all">すべて (8)</button>
+        <button type="button" class="filter-btn" data-season="spring">🌸 春 (2)</button>
+        <button type="button" class="filter-btn" data-season="summer">🌻 夏 (2)</button>
+        <button type="button" class="filter-btn" data-season="autumn">🍁 秋 (2)</button>
+        <button type="button" class="filter-btn" data-season="winter">❄️ 冬 (2)</button>
+      </div>
+    </div>
+
+    <!-- サイドバー ＋ マップ表示エリア -->
+    <div class="map-layout">
+      <aside class="matsuri-sidebar">
+        <h2>主な祭り・スポット</h2>
+        <ul class="matsuri-list">
+          <li>
+            <button class="spot-btn" data-location="埼玉県秩父郡長瀞町長瀞 長瀞駅周辺">
+              <span class="spot-name">🌸 長瀞桜まつり</span>
+              <span class="spot-area">長瀞町</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県さいたま市岩槻区太田3-4 岩槻城址公園">
+              <span class="spot-name">🌸 岩槻城址公園桜まつり</span>
+              <span class="spot-area">さいたま市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県熊谷市筑波 熊谷駅前">
+              <span class="spot-name">🌻 熊谷うちわ祭</span>
+              <span class="spot-area">熊谷市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県さいたま市大宮区高鼻町1-45 氷川神社">
+              <span class="spot-name">🌻 大宮夏まつり</span>
+              <span class="spot-area">さいたま市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県川越市 札の辻">
+              <span class="spot-name">🍁 川越まつり</span>
+              <span class="spot-area">川越市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県所沢市寿町 所沢駅周辺">
+              <span class="spot-name">🍁 ところざわまつり</span>
+              <span class="spot-area">所沢市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県秩父市番場町1-1 秩父神社">
+              <span class="spot-name">❄️ 秩父夜祭</span>
+              <span class="spot-area">秩父市</span>
+            </button>
+          </li>
+          <li>
+            <button class="spot-btn" data-location="埼玉県秩父市大滝4066 三十槌の氷柱">
+              <span class="spot-name">❄️ 三十槌の氷柱まつり</span>
+              <span class="spot-area">秩父市</span>
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <section class="map-area">
+        <div class="map-container">
+          <iframe 
+            id="gmap"
+            src="https://maps.google.com/maps?q=埼玉県&t=&z=10&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="460" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            class="google-map">
+          </iframe>
+        </div>
+      </section>
+    </div>
+
+    <!-- 🏮 カード一覧 -->
+    <section class="info-section">
+      <h2 class="section-title">埼玉の代表的な祭り・開催地一覧</h2>
+      <div class="card-grid">
+
+        <!-- 春 1 -->
+        <div class="info-card" data-location="埼玉県秩父郡長瀞町長瀞 長瀞駅周辺" data-name="長瀞桜まつり">
+          <div class="card-header">
+            <span class="season-badge spring">🌸 春</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>長瀞桜まつり</h3>
+          <p class="meta">📍 開催地: 長瀞町（長瀞駅周辺・北桜通り）</p>
+          <p class="meta">📅 時期: 3月下旬〜4月下旬</p>
+          <p class="desc">「日本のさくら名所100選」に選ばれた桜の名所。桜のトンネルや夜間のライトアップが魅力的です。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県秩父郡長瀞町長瀞 長瀞駅周辺'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('長瀞桜まつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 春 2 -->
+        <div class="info-card" data-location="埼玉県さいたま市岩槻区太田3-4 岩槻城址公園" data-name="岩槻城址公園桜まつり">
+          <div class="card-header">
+            <span class="season-badge spring">🌸 春</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>岩槻城址公園桜まつり</h3>
+          <p class="meta">📍 開催地: さいたま市岩槻区（岩槻城址公園）</p>
+          <p class="meta">📅 時期: 3月下旬〜4月上旬</p>
+          <p class="desc">約600本の桜が咲き誇る県内有数の花見スポット。朱塗りの八ツ橋と桜の美しい対比が見どころです。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県さいたま市岩槻区太田3-4 岩槻城址公園'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('岩槻城址公園桜まつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 夏 1 -->
+        <div class="info-card" data-location="埼玉県熊谷市筑波 熊谷駅前" data-name="熊谷うちわ祭">
+          <div class="card-header">
+            <span class="season-badge summer">🌻 夏</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>熊谷うちわ祭</h3>
+          <p class="meta">📍 開催地: 熊谷市（熊谷駅前〜市街地）</p>
+          <p class="meta">📅 時期: 7月20日〜22日</p>
+          <p class="desc">「関東一の祇園」と称される熱気あふれる夏祭り。お囃子の叩き合いとお祭りの熱気が街を包みます。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県熊谷市筑波 熊谷駅前'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('熊谷うちわ祭');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 夏 2 -->
+        <div class="info-card" data-location="埼玉県さいたま市大宮区高鼻町1-45 氷川神社" data-name="大宮夏まつり">
+          <div class="card-header">
+            <span class="season-badge summer">🌻 夏</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>大宮夏まつり</h3>
+          <p class="meta">📍 開催地: さいたま市（大宮駅周辺・氷川神社）</p>
+          <p class="meta">📅 時期: 8月1日・2日</p>
+          <p class="desc">スパークリングショーや神輿・山車の巡行など、大宮駅周辺が活気に包まれる夏の風物詩です。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県さいたま市大宮区高鼻町1-45 氷川神社'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('大宮夏まつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 秋 1 -->
+        <div class="info-card" data-location="埼玉県川越市 札の辻" data-name="川越まつり">
+          <div class="card-header">
+            <span class="season-badge autumn">🍁 秋</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>川越まつり</h3>
+          <p class="meta">📍 開催地: 川越市（蔵の街周辺）</p>
+          <p class="meta">📅 時期: 10月第3土日</p>
+          <p class="desc">絢爛豪華な山車が小江戸の町並みを巡行。山車同士が競い合う迫力の「ひっかわせ」は必見です。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県川越市 札の辻'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('川越まつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 秋 2 -->
+        <div class="info-card" data-location="埼玉県所沢市寿町 所沢駅周辺" data-name="ところざわまつり">
+          <div class="card-header">
+            <span class="season-badge autumn">🍁 秋</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>ところざわまつり</h3>
+          <p class="meta">📍 開催地: 所沢市（所沢駅西口〜昭和通り周辺）</p>
+          <p class="meta">📅 時期: 10月上旬</p>
+          <p class="desc">重厚な山車の曳き回しや迫力ある居囃子、多くの屋台が並び街全体が熱気に包まれます。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県所沢市寿町 所沢駅周辺'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('ところざわまつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 冬 1 -->
+        <div class="info-card" data-location="埼玉県秩父市番場町1-1 秩父神社" data-name="秩父夜祭">
+          <div class="card-header">
+            <span class="season-badge winter">❄️ 冬</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>秩父夜祭</h3>
+          <p class="meta">📍 開催地: 秩父市（秩父神社周辺）</p>
+          <p class="meta">📅 時期: 12月2日・3日</p>
+          <p class="desc">日本三大曳山祭のひとつ。澄んだ冬の夜空を彩る大輪の花火と豪快な屋台笠鉾が見事です。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県秩父市番場町1-1 秩父神社'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('秩父夜祭');">🔗 シェア</button>
+          </div>
+        </div>
+
+        <!-- 冬 2 -->
+        <div class="info-card" data-location="埼玉県秩父市大滝4066 三十槌の氷柱" data-name="三十槌の氷柱まつり">
+          <div class="card-header">
+            <span class="season-badge winter">❄️ 冬</span>
+            <span class="status-badge active">開催予定</span>
+          </div>
+          <h3>三十槌の氷柱まつり</h3>
+          <p class="meta">📍 開催地: 秩父市大滝（ウッドルーフ奥秩父オートキャンプ場）</p>
+          <p class="meta">📅 時期: 1月上旬〜2月下旬</p>
+          <p class="desc">奥秩父の冬の風物詩。大自然がつくり出す巨大な氷柱と幻想的なライトアップが楽しめます。</p>
+          
+          <div class="card-actions">
+            <a href="#" class="btn-route" onclick="openRoute('埼玉県秩父市大滝4066 三十槌の氷柱'); return false;">🚗 ルート案内</a>
+            <button class="btn-share" onclick="shareEvent('三十槌の氷柱まつり');">🔗 シェア</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- 🌐 共通フッター -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-logo">埼玉ナビ</p>
+      <ul class="footer-links">
+        <li><a href="home .html">ホーム</a></li>
+        <li><a href="chizu.html">マップ・祭り</a></li>
+        <li><a href="kisetsu.html">季節</a></li>
+        <li><a href="rekisi.html">歴史</a></li>
+        <li><a href="keijiban.html">掲示板</a></li>
+      </ul>
+      <p class="copyright">&copy; 埼玉ナビ All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS読み込み (js/ フォルダへ正しく参照) -->
+  <script src="../js/chizu.js"></script>
+</body>
+</html>

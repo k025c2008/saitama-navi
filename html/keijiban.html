@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交流掲示板 - 埼玉ナビ</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- 1つ上の階層のcssフォルダからkeijiban.cssを読み込む -->
+  <link rel="stylesheet" href="../css/keijiban.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="header-container">
+    <div class="site-logo">
+        <a href="home.html">
+            <img src="../images/logo3.png" alt="埼玉ナビ - 見つけよう、埼玉の魅力！">
+        </a>
+    </div>
+    <div class="page-title">
+        <h1>埼玉の祭り 歴史探訪</h1>
+        <p>歴史から探すお祭りポータル</p>
+    </div>    
+    <nav class="global-nav">
+        <ul>
+            <li><a href="home.html">ホーム</a></li>
+            <li><a href="rekisi.html">歴史</a></li>
+            <li><a href="kisetsu.html">季節</a></li>
+            <li><a href="chizu.html">地図</a></li>
+            <li><a href="keijiban.html" aria-current="page">掲示板</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <section class="page-title-section">
+      <div class="page-title">
+        <h2>祭事 交流掲示板</h2>
+      </div>
+      <p class="page-subtitle">埼玉各地のお祭りやイベントに関する感想、写真、耳寄り情報などを自由に共有できる交流の場です。</p>
+    </section>
+    <!-- 投稿フォーム -->
+    <section class="post-form-card">
+      <h3><span class="icon">✍️</span> 新しく投稿する</h3>
+      <form id="postForm">
+        <div class="form-group">
+          <label for="authorInput">お名前（ニックネーム） <span class="required">必須</span></label>
+          <input type="text" id="authorInput" placeholder="例: さいたま太郎" required maxlength="20">
+        </div>
+
+        <div class="form-group">
+          <label for="messageInput">投稿内容 <span class="required">必須</span></label>
+          <textarea id="messageInput" rows="4" placeholder="お祭りの感想やおすすめスポットなどを書いてください..." required maxlength="500"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="imageInput">写真を追加（任意）</label>
+          <div class="image-input-wrap">
+            <input type="file" id="imageInput" accept="image/*">
+            <button type="button" id="clearImageBtn" class="btn-clear-image" style="display: none;">❌ 取り消す</button>
+          </div>
+          <p class="form-help">※JPG, PNG, WebP等の画像ファイルをアップロードできます。（自動圧縮されます）</p>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit">
+          <span class="btn-text">投稿する</span>
+          <span class="spinner" id="btnSpinner" style="display: none;"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- 検索 & 絞り込み -->
+    <section class="search-section">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="投稿を検索（名前・本文）...">
+        <button type="button" id="searchBtn" class="btn-search">検索</button>
+        <button type="button" id="resetBtn" class="btn-reset">リセット</button>
+      </div>
+    </section>
+
+    <!-- 投稿一覧 -->
+    <section class="posts-section">
+      <h3 class="section-heading">みんなの投稿</h3>
+      <div id="postsContainer" class="posts-list">
+        <p class="loading-text">投稿を読み込んでいます...</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+     <p class="foot-note">&copy; 2026 埼玉ナビ &middot; 埼玉の祭りガイド</p>
+  </footer>
+
+  <!-- Firebase SDK & 掲示板ロジック -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getDatabase, 
+      ref as dbRef, 
+      push, 
+      onValue 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    // Firebase設定情報
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5iaNYL4DHzShWNoT-r-e4OWUED4FA9i0",
+      authDomain: "saitama-navi-2026.firebaseapp.com",
+      databaseURL: "https://saitama-navi-2026-default-rtdb.firebaseio.com",
+      projectId: "saitama-navi-2026",
+      messagingSenderId: "755034579741",
+      appId: "1:755034579741:web:0b0de1f9f4773b208cb7f4",
+      measurementId: "G-TGLTYL71ZC"
+    };
+
+    // Firebaseの初期化
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postsRef = dbRef(db, 'posts');
+
+    // DOM要素の取得
+    const postForm = document.getElementById('postForm');
+    const authorInput = document.getElementById('authorInput');
+    const messageInput = document.getElementById('messageInput');
+    const imageInput = document.getElementById('imageInput');
+    const clearImageBtn = document.getElementById('clearImageBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const postsContainer = document.getElementById('postsContainer');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let allPosts = [];
+
+    // --- 画像の選択制御 ---
+    imageInput.addEventListener('change', () => {
+      if (imageInput.files && imageInput.files.length > 0) {
+        clearImageBtn.style.display = 'inline-block';
+      } else {
+        clearImageBtn.style.display = 'none';
+      }
+    });
+
+    clearImageBtn.addEventListener('click', () => {
+      imageInput.value = '';
+      clearImageBtn.style.display = 'none';
+    });
+
+    // 画像ファイルを圧縮して Base64 文字列に変換する関数（容量オーバー対策）
+    function compressAndConvertToBase64(file, maxWidth = 800, quality = 0.7) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // JPEG形式で圧縮出力
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve(dataUrl);
+          };
+          img.onerror = (err) => reject(err);
+        };
+        reader.onerror = (err) => reject(err);
+      });
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatDate(timestamp) {
+      if (!timestamp) return '投稿中...';
+      const date = new Date(timestamp);
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      const hh = String(date.getHours()).padStart(2, '0');
+      const min = String(date.getMinutes()).padStart(2, '0');
+      return `${yyyy}/${mm}/${dd} ${hh}:${min}`;
+    }
+
+    // 投稿のHTMLレンダリング関数
+    function renderPosts(postsToRender) {
+      postsContainer.innerHTML = '';
+
+      const parentPosts = postsToRender.filter(p => !p.parentId).sort((a, b) => b.createdAt - a.createdAt);
+      const replyPosts = postsToRender.filter(p => p.parentId).sort((a, b) => a.createdAt - b.createdAt);
+
+      if (parentPosts.length === 0) {
+        postsContainer.innerHTML = '<p class="no-posts">投稿がまだありません。</p>';
+        return;
+      }
+
+      parentPosts.forEach(post => {
+        const postCard = document.createElement('article');
+        postCard.className = 'post-card';
+
+        let imageHTML = '';
+        if (post.imageUrl) {
+          imageHTML = `
+            <div class="post-image-wrap">
+              <a href="${post.imageUrl}" target="_blank" rel="noopener noreferrer">
+                <img src="${post.imageUrl}" alt="投稿画像" class="post-image" loading="lazy">
+              </a>
+            </div>
+          `;
+        }
+
+        const thisReplies = replyPosts.filter(r => r.parentId === post.id);
+
+        let repliesHTML = '';
+        if (thisReplies.length > 0) {
+          repliesHTML = `
+            <div class="replies-list">
+              ${thisReplies.map(reply => `
+                <div class="reply-item">
+                  <div class="reply-header">
+                    <span class="reply-author">${escapeHTML(reply.author)}</span>
+                    <time class="reply-date">${formatDate(reply.createdAt)}</time>
+                  </div>
+                  <p class="reply-message">${escapeHTML(reply.message).replace(/\n/g, '<br>')}</p>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        postCard.innerHTML = `
+          <div class="post-header">
+            <span class="post-author">${escapeHTML(post.author)}</span>
+            <time class="post-date">${formatDate(post.createdAt)}</time>
+          </div>
+          <div class="post-body">
+            <p class="post-message">${escapeHTML(post.message).replace(/\n/g, '<br>')}</p>
+            ${imageHTML}
+          </div>
+
+          <div class="post-footer">
+            <button type="button" class="btn-reply-toggle" data-id="${post.id}">💬 返信する (${thisReplies.length})</button>
+          </div>
+
+          <div class="reply-form-container" id="reply-form-${post.id}" style="display: none;">
+            <form class="reply-form" data-parent-id="${post.id}">
+              <div class="form-group">
+                <input type="text" class="reply-author-input" placeholder="返信者のお名前" required maxlength="20">
+              </div>
+              <div class="form-group">
+                <textarea class="reply-message-input" rows="2" placeholder="返信内容を入力..." required maxlength="300"></textarea>
+              </div>
+              <div class="reply-form-actions">
+                <button type="button" class="btn-cancel-reply" data-id="${post.id}">キャンセル</button>
+                <button type="submit" class="btn-reply-submit">返信を送信</button>
+              </div>
+            </form>
+          </div>
+
+          ${repliesHTML}
+        `;
+
+        postsContainer.appendChild(postCard);
+      });
+
+      attachReplyEvents();
+    }
+
+    // リプライ関係のイベント設定
+    function attachReplyEvents() {
+      document.querySelectorAll('.btn-reply-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const formWrapper = document.getElementById(`reply-form-${id}`);
+          formWrapper.style.display = formWrapper.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+
+      document.querySelectorAll('.btn-cancel-reply').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          document.getElementById(`reply-form-${id}`).style.display = 'none';
+        });
+      });
+
+      document.querySelectorAll('.reply-form').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const parentId = form.getAttribute('data-parent-id');
+          const author = form.querySelector('.reply-author-input').value.trim();
+          const message = form.querySelector('.reply-message-input').value.trim();
+          const submitBtn = form.querySelector('.btn-reply-submit');
+
+          if (!author || !message) return;
+
+          submitBtn.disabled = true;
+
+          try {
+            await push(postsRef, {
+              author: author,
+              message: message,
+              parentId: parentId,
+              createdAt: Date.now()
+            });
+
+            form.reset();
+            document.getElementById(`reply-form-${parentId}`).style.display = 'none';
+          } catch (error) {
+            console.error("返信投稿エラー:", error);
+            alert("返信に失敗しました。: " + error.message);
+          } finally {
+            submitBtn.disabled = false;
+          }
+        });
+      });
+    }
+
+    // データのリアルタイム監視
+    onValue(postsRef, (snapshot) => {
+      allPosts = [];
+      const data = snapshot.val();
+
+      if (data) {
+        Object.keys(data).forEach(key => {
+          allPosts.push({ id: key, ...data[key] });
+        });
+      }
+
+      renderPosts(allPosts);
+    }, (error) => {
+      console.error("Database読み込みエラー:", error);
+      postsContainer.innerHTML = '<p class="error-text">投稿の読み込みに失敗しました。</p>';
+    });
+
+    // 新規親投稿処理
+    postForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const author = authorInput.value.trim();
+      const message = messageInput.value.trim();
+      const file = imageInput.files[0];
+
+      if (!author || !message) return;
+
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+
+      try {
+        let imageUrl = '';
+
+        if (file) {
+          // 画像圧縮を行ってBase64を取得
+          imageUrl = await compressAndConvertToBase64(file, 800, 0.7);
+        }
+
+        await push(postsRef, {
+          author: author,
+          message: message,
+          imageUrl: imageUrl,
+          createdAt: Date.now()
+        });
+
+        postForm.reset();
+        clearImageBtn.style.display = 'none';
+      } catch (error) {
+        console.error("投稿エラー詳細:", error);
+        alert("投稿に失敗しました。\nエラー内容: " + error.message);
+      } finally {
+        submitBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+      }
+    });
+
+    // 検索機能
+    searchBtn.addEventListener('click', () => {
+      const keyword = searchInput.value.trim().toLowerCase();
+      if (!keyword) {
+        renderPosts(allPosts);
+        return;
+      }
+      const filtered = allPosts.filter(post => 
+        (post.author && post.author.toLowerCase().includes(keyword)) ||
+        (post.message && post.message.toLowerCase().includes(keyword))
+      );
+      renderPosts(filtered);
+    });
+
+    // リセット機能
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      renderPosts(allPosts);
+    });
+  </script>
+</body>
+</html>

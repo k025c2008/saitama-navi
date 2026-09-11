@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>埼玉の祭り 歴史探訪｜埼玉ナビ</title>
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="../css/rekisi.css">
+</head>
+<body>
+
+    <!-- 構造を戻したヘッダーエリア -->
+    <header class="header-container">
+        <div class="site-logo">
+            <a href="home.html">
+                <img src="../images/logo3.png" alt="埼玉ナビ - 見つけよう、埼玉の魅力！">
+            </a>
+        </div>
+        <div class="page-title">
+            <h1>埼玉の祭り 歴史探訪</h1>
+            <p>歴史から探すお祭りポータル</p>
+        </div>    
+        <nav class="global-nav">
+        <ul>
+            <li><a href="home.html">ホーム</a></li>
+            <li><a href="rekisi.html" class="active">歴史</a></li>
+            <li><a href="kisetsu.html">季節</a></li>
+            <li><a href="chizu.html">地図</a></li>
+            <li><a href="keijiban.html">掲示板</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <!-- メインコンテナ -->
+    <div class="container-table">
+        <div class="container-row">
+            
+            <!-- メインコンテンツ -->
+            <main>
+                <!-- 検索バー（クリアボタンを追加） -->
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="キーワード（例：ユネスコ、江戸、夏）で検索...">
+                    <button type="button" id="search-btn">検索</button>
+                    <button type="button" id="reset-btn" class="reset-btn">クリア</button>
+                </div>
+
+                <!-- 導入・あらすじセクション -->
+                <section class="matsuri-intro-hero">
+                    <div class="intro-inner">
+                        <span class="intro-sub-tag">埼玉の祭りを巡る物語</span>
+                        <h2>歴史がつむぐ、人と地域の情熱</h2>
+                        <div class="intro-divider"></div>
+                        <p class="intro-lead">
+                            時代を超えて受け継がれる伝統から、熱気あふれる現代の祭礼まで。<br>
+                            ここから、埼玉の祭りが持つ深い歴史とストーリーを紐解きます。
+                        </p>
+                    </div>
+                </section>
+
+                <div class="intro-box">
+                    <p>埼玉県内には、江戸時代から続く厳かな伝統祭礼から、戦後の地域活性化のために誕生した現代の祭りまで、多様な歴史的背景を持つ祭りが存在します。それぞれの祭りが紡いできた歴史のストーリーをひも解いてみましょう。</p>
+                </div>
+
+                <!-- 1. 秩父夜祭 -->
+                <article class="matsuri-card" id="chichibu">
+                    <details>
+                        <summary>
+                            <div class="matsuri-header" style="border-bottom: none; margin-bottom: 0;">
+                                <div class="matsuri-title-container">
+                                    <div class="matsuri-title-text">
+                                        <h2 class="matsuri-title">秩父夜祭（ちちぶよまつり）</h2>
+                                        <div class="matsuri-meta">
+                                            <span>開催地：秩父市</span>
+                                            <span>時期：12月</span>
+                                        </div>
+                                    </div>
+                                    <div class="matsuri-toggle-icon"></div>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="details-content">
+                            <div class="matsuri-image">
+                               <img src="../images/chichibu.webp" alt="秩父夜祭の山車と花火">
+                            </div>
+                            <p class="matsuri-desc">京都の祇園祭、飛騨高山祭（ひだたかやままつり）とともに「日本三大曳山（ひきやま）祭り」の一つ。冬の秩父路をゆく豪華絢爛な笠鉾・屋台（ごうかけんらんな かさぼこ・やたい）の巡行と、夜空を彩る大輪の冬花火が織りなす景色は圧巻です。</p>
+                            <div class="history-badge">
+                                <strong>【歴史の背景】</strong> 起源は秩父神社（秩父祭り）が創業された古代にさかのぼるとされていますが、現在の妙見信仰（みょうけんしんこう）と結びついた祭りの形は江戸時代（寛文年間）に定着しました。当時、秩父特産の絹織物の取引を行う「絹大市（きぬのおおいち）」とお祭りがセットで発展したため、地域の経済を支える重要な行事でもありました。平成28年にはユネスコ無形文化遺産にも登録されています。
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <!-- 2. 川越まつり -->
+                <article class="matsuri-card" id="kawagoe">
+                    <details>
+                        <summary>
+                            <div class="matsuri-header" style="border-bottom: none; margin-bottom: 0;">
+                                <div class="matsuri-title-container">
+                                    <div class="matsuri-title-text">
+                                        <h2 class="matsuri-title">川越まつり（かわごえまつり）</h2>
+                                        <div class="matsuri-meta">
+                                            <span>開催地：川越市</span>
+                                            <span>時期：10月</span>
+                                        </div>
+                                    </div>
+                                    <div class="matsuri-toggle-icon"></div>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="details-content">
+                            <div class="matsuri-image">
+                                <img src="../images/kawagoe2.jpg" alt="川越まつりのイメージ">
+                            </div>
+                            <p class="matsuri-desc">小江戸川越の蔵造（くらづくり）りの町並みを、精巧な人形を乗せた絢爛豪華な山車（だし）が巡行します。山車同士が出会った際に、お囃子（はやし）と踊りで競い合う伝統の「ひっかわせ」が最大の盛り上がりを見せます。</p>
+                            <div class="history-badge">
+                                <strong>【歴史の背景】</strong> 1648年（慶安元年）、当時の川越藩主・松平信綱（まつだいらのぶつな）が川越氷川神社に神輿などを寄進し、祭礼を奨励（しょうれい）したことが始まりです。当時、流行の最先端だった江戸の「天下祭（神田祭や山王祭）」の様式を色濃く反映しており、江戸との深い文化的・経済的なつながり（舟運など）を今に伝える貴重な文化遺産（ユネスコ無形文化遺産）です。
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <!-- 3. 熊谷うちわ祭 -->
+                <article class="matsuri-card" id="kumagaya">
+                    <details>
+                        <summary>
+                            <div class="matsuri-header" style="border-bottom: none; margin-bottom: 0;">
+                                <div class="matsuri-title-container">
+                                    <div class="matsuri-title-text">
+                                        <h2 class="matsuri-title">熊谷うちわ祭（くまがやうちわまつり）</h2>
+                                        <div class="matsuri-meta">
+                                            <span>開催地：熊谷市</span>
+                                            <span>時期：7月</span>
+                                        </div>
+                                    </div>
+                                    <div class="matsuri-toggle-icon"></div>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="details-content">
+                            <div class="matsuri-image">
+                                <img src="../images/kumagaya.jpg" alt="熊谷うちわ祭のイメージ">
+                            </div>
+                            <p class="matsuri-desc">「関東一の祇園祭」と称される、熱気溢れる夏の祭礼。12台の山車・屋台が熊谷囃子とともに街を巡行し、終盤にすべての山車が集結して一斉に囃子を叩き合う姿は圧巻の迫力です。</p>
+                            <div class="history-badge">
+                                <strong>【歴史の背景】</strong> 1750年（寛延3年）に始まった、疫病退散を祈る「愛宕祭（あたごまつり）」がルーツです。江戸時代、お祭りの期間中に各商店が買い物客に「赤飯」を振る舞っていましたが、後に利便性を考えて「うちわ」を配るようになったところ、これが大評判となりました。商店街のサービス精神から生まれた「うちわ祭」の名が、そのまま現在の祭りの代名詞となっています。
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <!-- 4. 南越谷阿波踊り -->
+                <article class="matsuri-card" id="koshigaya">
+                    <details>
+                        <summary>
+                            <div class="matsuri-header" style="border-bottom: none; margin-bottom: 0;">
+                                <div class="matsuri-title-container">
+                                    <div class="matsuri-title-text">
+                                        <h2 class="matsuri-title">南越谷阿波踊り（みなみこしがやあわおどり）</h2>
+                                        <div class="matsuri-meta">
+                                            <span>開催地：越谷市</span>
+                                            <span>時期：8月</span>
+                                        </div>
+                                    </div>
+                                    <div class="matsuri-toggle-icon"></div>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="details-content">
+                            <div class="matsuri-image">
+                                <img src="../images/kosigaya.jpg" alt="南越谷阿波踊りのイメージ">
+                            </div>
+                            <p class="matsuri-desc">本場・徳島、東京の高円寺に並ぶ「日本三大阿波踊り」の一つに数えられるまでに成長した、埼玉を代表する熱気あふれる夏のイベントです。</p>
+                            <div class="history-badge">
+                                <strong>【歴史の背景】</strong> 他の伝統祭礼とは異なり、1985年（昭和60年）に始まった比較的新しい近代の祭りです。越谷に拠点を置く事業家が「地元の子どもたちに、誇りを持てる『ふるさと』を作りたい」という熱い願いから、徳島県の全面的な協力を得てスタートさせました。新興住宅地における地域コミュニティの結びつきを強める、現代の都市型祭りの成功例として注目されています。
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <!-- 5. 春日部大凧あげ祭り -->
+                <article class="matsuri-card" id="kasukabe">
+                    <details>
+                        <summary>
+                            <div class="matsuri-header" style="border-bottom: none; margin-bottom: 0;">
+                                <div class="matsuri-title-container">
+                                    <div class="matsuri-title-text">
+                                        <h2 class="matsuri-title">春日部大凧あげ祭り（かすかべおおだこあげまつり）</h2>
+                                        <div class="matsuri-meta">
+                                            <span>開催地：春日部市</span>
+                                            <span>時期：5月</span>
+                                        </div>
+                                    </div>
+                                    <div class="matsuri-toggle-icon"></div>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="details-content">
+                            <div class="matsuri-image">
+                                <img src="../images/Copilot_20260722_142249.png" alt="春日部大凧あげ祭りのイメージ">
+                            </div>
+                            <p class="matsuri-desc">江戸川の河川敷を舞台に、畳100畳分（縦15m×横11m）、重さ約800kgにも及ぶ巨大な大凧を大空へと揚げる、ダイナミックで勇壮な伝統行事です。</p>
+                            <div class="history-badge">
+                                <strong>【歴史の背景】</strong> 天保年間（1830年〜1844年）頃、地元の僧侶が、江戸で流行していた凧をヒントに始まったとされています。初節句を迎える子どもたちの「健やかな成長（健康祈願）」と、「豊作祈願」を目的としており、かつては養蚕（ようさん）の豊凶を占う意味も持っていました。当時の農村文化と、江戸の流行が融合して生まれた独特の歴史を持っています。
+                            </div>
+                        </div>
+                    </details>
+                </article>
+
+                <!-- 検索結果がゼロの時のメッセージ -->
+                <div id="no-result" style="display: none; text-align: center; padding: 40px; color: #666; background: rgba(255,255,255,0.8); border-radius: 10px; margin-bottom: 20px;">
+                    <p>お探しのキーワードに該当するお祭りは見つかりませんでした。</p>
+                </div>
+            </main>
+
+            <!-- サイドバー（目次） -->
+            <aside>
+                <h2>歴史から探す（年表順）</h2>
+                <ul class="aside-list">
+                    <li>
+                        <a href="https://www.chichibu-matsuri.jp/yomatsuri/" class="matsuri-link" data-target="chichibu">秩父夜祭</a>
+                        <div class="aside-meta">江戸時代（寛文年間）〜</div>
+                    </li>
+                    <li>
+                        <a href="https://kawagoematsuri.jp/" class="matsuri-link" data-target="kawagoe">川越まつり</a>
+                        <div class="aside-meta">1648年〜</div>
+                    </li>
+                    <li>
+                        <a href="https://uchiwamatsuri.com/" class="matsuri-link" data-target="kumagaya">熊谷うちわ祭</a>
+                        <div class="aside-meta">1750年〜</div>
+                    </li>
+                    <li>
+                        <a href="https://www.minamikoshigaya-awaodori.jp/" class="matsuri-link" data-target="koshigaya">南越谷阿波踊り</a>
+                        <div class="aside-meta">1985年〜</div>
+                    </li>
+                    <li>
+                        <a href="https://showa-odako.com/" class="matsuri-link" data-target="kasukabe">春日部大凧あげ祭り</a>
+                        <div class="aside-meta">天保年間〜</div>
+                    </li>
+                </ul>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- トップへ戻るボタン -->
+    <button id="back-to-top" class="back-to-top" aria-label="ページ上部へ戻る">▲ TOP</button>
+
+    <!-- フッター -->
+    <footer>
+        <p class="foot-note">&copy; 2026 埼玉ナビ &middot; 埼玉の祭りガイド</p>
+    </footer>
+
+    <!-- JSスクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. スクロールに合わせてカードをふわっと表示（スクロールアニメーション）
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-show');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.matsuri-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // 2. サイドバーのクリック処理（該当カードへスクロール＆アコーディオン開く＋外部サイト遷移）
+            document.querySelectorAll('.matsuri-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('data-target');
+                    const targetCard = document.getElementById(targetId);
+                    const officialUrl = this.getAttribute('href');
+                    
+                    if (targetCard) {
+                        const details = targetCard.querySelector('details');
+                        if (details) {
+                            details.open = true;
+                        }
+                        
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        if (officialUrl && officialUrl !== '#') {
+                            setTimeout(() => {
+                                window.open(officialUrl, '_blank');
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+
+            // 3. リアルタイム検索 ＆ クリア機能（0件表示付き）
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const matsuriCards = document.querySelectorAll('.matsuri-card');
+            const noResult = document.getElementById('no-result');
+
+            function filterMatsuri() {
+                if (!searchInput) return;
+                const query = searchInput.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                matsuriCards.forEach(card => {
+                    const textContent = card.textContent.toLowerCase();
+                    const details = card.querySelector('details');
+
+                    if (query === "") {
+                        card.style.display = "";
+                        visibleCount++;
+                    } else if (textContent.includes(query)) {
+                        card.style.display = "";
+                        if (details) details.open = true;
+                        visibleCount++;
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+
+                if (noResult) {
+                    noResult.style.display = (visibleCount === 0) ? 'block' : 'none';
+                }
+            }
+
+            function resetSearch() {
+                if (searchInput) searchInput.value = "";
+                matsuriCards.forEach(card => {
+                    card.style.display = "";
+                    const details = card.querySelector('details');
+                    if (details) details.open = false;
+                });
+                if (noResult) noResult.style.display = 'none';
+            }
+
+            if (searchBtn) searchBtn.addEventListener('click', filterMatsuri);
+            if (resetBtn) resetBtn.addEventListener('click', resetSearch);
+
+            if (searchInput) {
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') filterMatsuri();
+                });
+            }
+
+            // 4. トップへ戻るボタンの表示制御と動作
+            const topBtn = document.getElementById('back-to-top');
+            if (topBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        topBtn.classList.add('is-active');
+                    } else {
+                        topBtn.classList.remove('is-active');
+                    }
+                });
+
+                topBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

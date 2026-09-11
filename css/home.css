@@ -1,0 +1,836 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+:root {
+    --ocean: #f3faf9;         /* ocean white background */
+    --ocean-deep: #e6f3f1;    /* slightly deeper band background */
+    --surface: #ffffff;
+    --yellow: #ffd84d;        /* light yellow accent */
+    --yellow-soft: #fff6d9;   /* very light yellow, badges */
+    --yellow-deep: #e0a800;   /* darker yellow for hover / contrast text */
+    --text: #223333;
+    --text-soft: #5b6d6d;
+    --line: #dcece9;
+
+    --serif: "Shippori Mincho", serif;
+    --sans: "Zen Kaku Gothic New", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    overflow-x: clip;   /* はみ出しを切る */
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--ocean);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; }
+
+:focus-visible {
+    outline: 2.5px solid var(--yellow-deep);
+    outline-offset: 3px;
+}
+
+/* ---------- header / nav ---------- */
+.site-head {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(243, 250, 249, .92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+.head-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: .3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+.site-nav { display: flex; gap: .7rem; flex-wrap: wrap; }
+
+.site-nav a {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .45rem 1rem;
+    transition: transform .2s, box-shadow .2s, border-color .2s, background .2s, color .2s;
+}
+
+.site-nav a .nav-icon { font-size: 1.05rem; line-height: 1; }
+
+.site-nav a:hover {
+    color: var(--text);
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -14px rgba(34, 51, 51, .4);
+}
+
+.site-nav a[aria-current="page"] {
+    color: var(--text);
+    background: var(--yellow-soft);
+    border-color: var(--yellow);
+}
+
+/* ---------- top ---------- */
+.top {
+    position: relative;
+    min-height: 620px;
+
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(230, 243, 241, 0.90) 0%,
+            rgba(230, 243, 241, 0.75) 30%,
+            rgba(230, 243, 241, 0.35) 55%,
+            rgba(230, 243, 241, 0.08) 75%,
+            rgba(230, 243, 241, 0.00) 100%
+            
+        ),
+        url("../images/saitama.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.top-main {
+    max-width: 760px;
+}
+
+
+
+.top-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 5.5rem 1.5rem 5rem;
+    min-height: 720px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* vertical signature accent */
+.tate {
+    writing-mode: vertical-rl;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.1rem;
+    letter-spacing: .35em;
+    color: var(--yellow-deep);
+    border-right: 2px solid var(--yellow);
+    padding-right: 1.1rem;
+    height: max-content;
+}
+
+.tate small {
+    display: block;
+    writing-mode: horizontal-tb;
+    font-family: var(--sans);
+    font-size: .68rem;
+    letter-spacing: .25em;
+    color: var(--text-soft);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: .8rem;
+    letter-spacing: .35em;
+    font-weight: 700;
+    color: var(--yellow-deep);
+    background: var(--yellow-soft);
+    padding: .35rem .9rem;
+    margin-bottom: 1.4rem;
+}
+
+.top h1 {
+    font-family: var(--serif);
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 1.22;
+    letter-spacing: .02em;
+}
+
+.top h1 .accent { color: var(--yellow-deep); }
+
+.top p {
+    margin-top: 1.5rem;
+    max-width: 46ch;
+    font-size: 1.05rem;
+    color: var(--text-soft);
+}
+
+.top-cta {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    background: var(--yellow);
+    color: var(--text);
+    font-weight: 700;
+    padding: .8rem 1.7rem;
+    border-radius: 2px;
+    transition: transform .2s, background .2s;
+}
+
+.top-cta:hover { background: var(--yellow-deep); color: #fff; transform: translateY(-2px); }
+.top-cta:hover span { transform: translateX(4px); }
+.top-cta span { transition: transform .2s; }
+
+/* ---------- countdown & weather ---------- */
+.top-info {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.countdown {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .20rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--yellow);
+    padding: .9rem 1.3rem;
+}
+
+.countdown .label { font-size: .85rem; color: var(--text-soft); }
+.countdown .days { font-family: var(--serif); font-size: 1.6rem; font-weight: 800; color: var(--yellow-deep); }
+.countdown .name { font-size: .95rem; font-weight: 700; }
+
+.weather {
+    display: inline-flex;
+    align-items: center;
+    gap: .20rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--yellow-deep);
+    padding: .9rem 1.3rem;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.weather:hover {
+    transform: translateY(-2px);
+    border-color: var(--yellow-deep);
+    box-shadow: 0 10px 22px -16px rgba(34, 51, 51, .4);
+}
+
+.weather .w-icon { font-size: 1.8rem; line-height: 1; }
+.weather .w-text { display: flex; flex-direction: column; gap: .2rem; }
+.weather .w-label { font-size: .78rem; color: var(--text-soft); }
+.weather .w-body { font-size: .95rem; font-weight: 700; }
+.weather .w-temp { font-family: var(--serif); color: var(--yellow-deep); }
+.weather .w-arrow { margin-left: .2rem; color: var(--yellow-deep); font-weight: 700; transition: transform .2s; }
+.weather:hover .w-arrow { transform: translateX(4px); }
+
+/* ---------- section scaffolding ---------- */
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+/* 祭りカードの行だけ、ページ幅より広げる */
+.wrap-wide { max-width: min(1500px, calc(100vw - 3rem)); }
+section { padding: 4.8rem 0; }
+.sec-head { margin-bottom: 2.6rem; max-width: 52ch; }
+
+.sec-label {
+    font-size: .8rem;
+    letter-spacing: .35em;
+    font-weight: 700;
+    color: var(--yellow-deep);
+    margin-bottom: .7rem;
+}
+
+.sec-head h2 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 2.1rem;
+}
+
+.sec-head p { margin-top: .7rem; color: var(--text-soft); }
+
+/* ---------- pillars (entry cards) ---------- */
+
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+}
+
+.pillar-card {
+    --accent: var(--yellow-deep);
+    --accent-soft: var(--yellow-soft);
+
+    --rx: 0deg;   /* マウス追従の傾き（js/main.js が書きこむ） */
+    --ry: 0deg;
+    --lift: 0px;
+
+    position: relative;
+    isolation: isolate;   /* 疑似要素を背景と本文のあいだに置くため */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    padding: 2rem 1.7rem 1.7rem;
+
+    /* 青海波（せいがいは）の波を、カードの下ふちに敷く */
+    background-color: var(--surface);
+    background-image:
+        radial-gradient(circle at 50% 100%, transparent 60%, var(--accent-soft) 61%, var(--accent-soft) 69%, transparent 70%),
+        radial-gradient(circle at 50% 100%, transparent 38%, var(--accent-soft) 39%, var(--accent-soft) 47%, transparent 48%),
+        radial-gradient(circle at 50% 100%, transparent 16%, var(--accent-soft) 17%, var(--accent-soft) 25%, transparent 26%);
+    background-size: 46px 23px;
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));
+    transition: transform .3s cubic-bezier(.2, .7, .3, 1),
+                box-shadow .35s ease,
+                border-color .35s ease,
+                background-size .5s ease;
+}
+
+/* 入り口ごとの色（各ページの雰囲気に合わせる） */
+.pillar-card:nth-child(1) { --accent: #d9383a; --accent-soft: #fdecec; } /* 歴史 = 朱 */
+.pillar-card:nth-child(2) { --accent: #e0a800; --accent-soft: #fff6d9; } /* 季節 = 金 */
+.pillar-card:nth-child(3) { --accent: #2f6d8f; --accent-soft: #e8f2f7; } /* 地図 = 藍 */
+
+/* 提灯の灯り：カードの下からあたたかい光が広がる */
+.pillar-card::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -45%;
+    width: 135%;
+    aspect-ratio: 1 / 1;
+    z-index: -1;
+    background: radial-gradient(circle,
+                var(--accent-soft) 0%,
+                rgba(255, 255, 255, 0) 68%);
+    opacity: 0;
+    transform: translateX(-50%) scale(.35);
+    transition: opacity .45s ease,
+                transform .6s cubic-bezier(.2, .7, .3, 1);
+}
+
+/* 背景の透かし文字（歴・季・地） */
+.pillar-card::after {
+    content: attr(data-kanji);
+    position: absolute;
+    right: -.16em;
+    bottom: -.14em;
+    z-index: -1;
+    font-family: var(--serif);
+    font-size: 8.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    opacity: .05;
+    transform: translateY(.16em) rotate(-5deg);
+    transition: opacity .5s ease,
+                transform .6s cubic-bezier(.2, .7, .3, 1);
+    pointer-events: none;
+}
+
+.pillar-card:hover,
+.pillar-card:focus-visible {
+    --lift: -8px;
+    border-color: var(--accent-soft);
+    border-top-color: var(--accent);
+    background-size: 46px 30px;   /* 波が少し高くなる */
+    box-shadow: 0 24px 44px -22px rgba(34, 51, 51, .45);
+    outline: none;
+}
+
+.pillar-card:hover::before,
+.pillar-card:focus-visible::before {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.pillar-card:hover::after,
+.pillar-card:focus-visible::after {
+    opacity: .12;
+    transform: translateY(0) rotate(0);
+}
+
+/* 漢字を「印」の形に */
+.pillar-card .kanji {
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    background: var(--accent-soft);
+    margin-bottom: 1.1rem;
+    transition: color .3s ease, background .3s ease,
+                box-shadow .45s ease,
+                transform .45s cubic-bezier(.2, .7, .3, 1);
+}
+
+/* 灯がともる瞬間 ＋ 提灯のようにゆれる */
+.pillar-card:hover .kanji,
+.pillar-card:focus-visible .kanji {
+    color: #fff;
+    background: var(--accent);
+    box-shadow: 0 0 0 .5rem var(--accent-soft),
+                0 12px 22px -10px var(--accent);
+    animation: lantern-sway 2.6s ease-in-out infinite;
+}
+
+@keyframes lantern-sway {
+    0%, 100% { transform: translateY(-3px) rotate(-3.5deg); }
+    50%      { transform: translateY(-3px) rotate(3.5deg); }
+}
+
+/* 火の粉（ひのこ）：印から小さな光が立ちのぼる */
+.pillar-card .kanji { position: relative; }
+
+.pillar-card .kanji::before,
+.pillar-card .kanji::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: .15rem;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pillar-card:hover .kanji::before,
+.pillar-card:focus-visible .kanji::before {
+    animation: ember-a 2.2s ease-out infinite;
+}
+
+.pillar-card:hover .kanji::after,
+.pillar-card:focus-visible .kanji::after {
+    animation: ember-b 2.2s ease-out .9s infinite;
+}
+
+@keyframes ember-a {
+    0%   { opacity: 0;   transform: translate(-50%, 0) scale(.5); }
+    18%  { opacity: .8; }
+    100% { opacity: 0;   transform: translate(-210%, -1.75rem) scale(.15); }
+}
+
+@keyframes ember-b {
+    0%   { opacity: 0;   transform: translate(-50%, 0) scale(.4); }
+    18%  { opacity: .65; }
+    100% { opacity: 0;   transform: translate(150%, -1.45rem) scale(.15); }
+}
+
+/* そのページに何がいくつあるかを示すラベル */
+.pillar-card .pillar-count {
+    align-self: flex-start;
+    margin-bottom: .75rem;
+    padding: .24rem .75rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.6;
+    transition: background .3s ease, color .3s ease;
+}
+
+.pillar-card:hover .pillar-count,
+.pillar-card:focus-visible .pillar-count {
+    background: var(--accent);
+    color: #fff;
+}
+
+.pillar-card h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .45rem;
+    letter-spacing: .05em;
+}
+
+.pillar-card p { font-size: .96rem; color: var(--text-soft); flex: 1; }
+
+.pillar-card .go {
+    position: relative;
+    align-self: flex-start;
+    margin-top: 1.4rem;
+    padding-bottom: .35rem;
+    font-weight: 700;
+    font-size: .92rem;
+    color: var(--accent);
+    display: inline-flex;
+    gap: .4rem;
+    align-items: center;
+}
+
+/* 下線が左から伸びる */
+.pillar-card .go::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: right .45s cubic-bezier(.2, .7, .3, 1);
+}
+
+.pillar-card:hover .go::after,
+.pillar-card:focus-visible .go::after { right: 0; }
+
+.pillar-card .go span { transition: transform .25s ease; }
+
+.pillar-card:hover .go span,
+.pillar-card:focus-visible .go span { transform: translateX(5px); }
+
+
+/* ---------- cards（共通の下地。地図ページの祭りカードでも使う） ---------- */
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--yellow);
+    overflow: hidden;
+    transition: transform .3s cubic-bezier(.2, .7, .3, 1),
+                box-shadow .3s ease, border-color .3s ease;
+}
+
+.card h3 { font-size: 1.05rem; font-weight: 700; margin: .6rem 0 .5rem; }
+.card p  { font-size: .92rem; color: var(--text-soft); flex: 1; }
+.card h3, .card p { padding: 0 1.5rem; }
+
+.fame-badge {
+    align-self: flex-start;
+    margin: 1rem 1.5rem 0;
+    background: var(--yellow-soft);
+    color: var(--yellow-deep);
+    font-size: .72rem;
+    font-weight: 700;
+    padding: .25rem .7rem;
+}
+
+/* ---------- 祭りカードの一覧（地図ページと共通） ---------- */
+.seasons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
+
+/* ---------- ホームだけ：2列・写真を大きく使う横並びのカード ---------- */
+.seasons--photo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+.seasons--photo .card {
+    display: grid;
+    grid-template-columns: 48% 1fr;
+}
+
+/* 2枚目・4枚目は写真を右にして、写真が外側にくるようにする */
+.seasons--photo .card:nth-child(even) { grid-template-columns: 1fr 48%; }
+.seasons--photo .card:nth-child(even) .card-media { order: 2; }
+
+.seasons--photo .card:hover {
+    transform: translateY(-6px);
+    border-top-color: var(--yellow-deep);
+    box-shadow: 0 26px 46px -26px rgba(34, 51, 51, .45);
+}
+
+/* 写真と、その上にのせる開催日 */
+.card-media {
+    position: relative;
+    overflow: hidden;
+    min-height: 345px;
+}
+
+/* 写真の下側を少し暗くして、日付を読みやすくする */
+.card-media::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(to top, rgba(20, 30, 30, .40), rgba(20, 30, 30, 0));
+    pointer-events: none;
+}
+
+.card-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .6s cubic-bezier(.2, .7, .3, 1);
+}
+
+.seasons--photo .card:hover .card-photo { transform: scale(1.07); }
+
+.card-date {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    padding: .35rem .9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .95);
+    color: var(--text);
+    font-size: .84rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.5;
+    box-shadow: 0 8px 20px -10px rgba(20, 30, 30, .8);
+    backdrop-filter: blur(4px);
+}
+
+.seasons--photo .card:hover .card-date { background: #fff; }
+
+/* 文字のほう */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.9rem 1.9rem 1.9rem 1.8rem;
+}
+
+.card-body .fame-badge {
+    margin: 0 0 .8rem;
+    border-radius: 999px;
+    font-size: .76rem;
+    letter-spacing: .02em;
+    padding: .28rem .8rem;
+}
+
+.card-body h3 {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    margin: 0 0 .7rem;
+    padding: 0;
+}
+
+.card-body p {
+    font-size: .95rem;
+    color: var(--text-soft);
+    flex: 0 1 auto;
+    padding: 0;
+    margin: 0;
+}
+
+/* リンク先の案内 */
+.card-go {
+    align-self: flex-start;
+    margin-top: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--yellow-deep);
+}
+
+.card-go span { transition: transform .25s ease; }
+.seasons--photo .card:hover .card-go span { transform: translateX(5px); }
+
+
+.seasons--photo .card:focus-visible {
+    outline: none;
+    transform: translateY(-6px);
+    border-top-color: var(--yellow-deep);
+    box-shadow: 0 0 0 3px var(--yellow), 0 26px 46px -26px rgba(34, 51, 51, .45);
+}
+
+/* ---------- featured matsuri band ---------- */
+.matsuri-band { background: var(--ocean-deep); }
+
+.matsuri-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+}
+
+.matsuri {
+    display: flex;
+    gap: 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 1.4rem;
+}
+
+.matsuri .date {
+    flex-shrink: 0;
+    width: 4.6rem;
+    height: 4.6rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: var(--yellow-soft);
+    color: var(--yellow-deep);
+    font-weight: 700;
+    font-size: .82rem;
+    line-height: 1.25;
+}
+
+.matsuri h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+.matsuri p { font-size: .9rem; color: var(--text-soft); }
+
+
+
+/* ---------- back to top ---------- */
+.to-top {
+    position: fixed;
+    right: 1.8rem;
+    bottom: 1.8rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    display: grid;
+    place-items: center;
+    background: var(--yellow);
+    color: var(--text);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -8px rgba(34, 51, 51, .45);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity .25s, transform .25s, background .2s;
+    z-index: 30;
+}
+
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--yellow-deep); color: #fff; }
+
+
+
+/* --- responsive --- */
+@media (max-width: 1000px) {
+    .top { min-height: 520px; }
+    .top-inner { min-height: 560px; padding: 4rem 1.25rem 3.5rem; }
+    .top h1 { font-size: 3rem; }
+
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .seasons { grid-template-columns: repeat(2, 1fr); }
+    .seasons--photo { grid-template-columns: 1fr; }
+}
+
+/* --- スマートフォン --- */
+@media (max-width: 760px) {
+    /* ヘッダー：ロゴを小さく、メニューは折り返す */
+    .head-inner { padding: .4rem 1rem; gap: .6rem; }
+    .logo { width: 104px; }
+    .site-nav { gap: .4rem; justify-content: flex-end; }
+    .site-nav a { font-size: .8rem; padding: .35rem .75rem; }
+
+    
+    .top {
+        min-height: 0;
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(230, 243, 241, .93) 0%,
+                rgba(230, 243, 241, .74) 45%,
+                rgba(230, 243, 241, .30) 100%
+            ),
+            url("../images/saitama.jpg");
+    }
+
+    .top-inner { min-height: 0; padding: 2.8rem 1.15rem 3rem; }
+    .top-main { max-width: 100%; }
+    .top h1 { font-size: 2.15rem; line-height: 1.3; }
+    .top p { font-size: .98rem; margin-top: 1.1rem; }
+    .eyebrow { font-size: .72rem; letter-spacing: .25em; margin-bottom: 1rem; }
+    .top-cta { margin-top: 1.5rem; }
+
+    /* カウントダウンと天気は縦に積む */
+    .top-info { margin-top: 1.8rem; gap: .7rem; }
+    .countdown, .weather { width: 100%; padding: .8rem 1rem; }
+
+    /* セクション全体 */
+    section { padding: 3.2rem 0; }
+    .wrap, .wrap-wide { padding: 0 1.15rem; }
+    .sec-head { margin-bottom: 1.8rem; }
+    .sec-head h2 { font-size: 1.55rem; }
+
+    /* カードは1列に */
+    .pillars { grid-template-columns: 1fr; gap: 1rem; }
+    .pillar-card { padding: 1.6rem 1.3rem 1.4rem; }
+    .pillar-card::after { font-size: 6.5rem; }
+
+    .seasons { grid-template-columns: 1fr; gap: 1.1rem; }
+    .seasons--photo .card, .seasons--photo .card:nth-child(even) { grid-template-columns: 1fr; }
+    .seasons--photo .card:nth-child(even) .card-media { order: 0; }
+    .card-media { min-height: 0; height: clamp(200px, 55vw, 300px); }
+    .card-body { padding: 1.4rem 1.3rem 1.5rem; }
+    .card-body h3 { font-size: 1.25rem; }
+
+    .matsuri-list { grid-template-columns: 1fr; gap: 1rem; }
+    .matsuri { padding: 1.1rem; gap: .9rem; }
+    .matsuri .date { width: 4rem; height: 4rem; font-size: .76rem; }
+}
+
+/* --- 小さいスマートフォン --- */
+@media (max-width: 420px) {
+    .logo { width: 88px; }
+    .site-nav a { font-size: .74rem; padding: .3rem .6rem; }
+    .top h1 { font-size: 1.85rem; }
+    .sec-head h2 { font-size: 1.4rem; }
+}
+
+/* ---------- reveal ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .card:hover, .pillar-card:hover, .top-cta:hover { transform: none; }
+    .card-photo, .card:hover .card-photo { transition: none; transform: none; }
+    .pillar-card, .pillar-card::before, .pillar-card::after,
+    .pillar-card .kanji, .pillar-card .go::after,
+    .pillar-card .go span { transition: none; }
+    .pillar-card { transform: none; }
+    .pillar-card:hover, .pillar-card:focus-visible { --lift: 0px; transform: none; }
+    .pillar-card:hover .kanji, .pillar-card:focus-visible .kanji,
+    .pillar-card .kanji::before, .pillar-card .kanji::after { animation: none; transform: none; }
+    .pillar-card .kanji::before, .pillar-card .kanji::after { display: none; }
+}
