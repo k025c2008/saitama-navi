@@ -1,0 +1,20 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="260" fill="#eaf6f4"/>
+  <rect width="400" height="150" fill="#cdeaf7"/>
+  <circle cx="330" cy="55" r="26" fill="#ffe8a3"/>
+  <polygon points="120,150 200,50 300,150" fill="#8fb98a"/>
+  <polygon points="150,150 200,80 260,150" fill="#7aa876"/>
+  <rect y="150" width="400" height="110" fill="#f6c9dc"/>
+  <ellipse cx="60" cy="175" rx="34" ry="14" fill="#f2a9c8"/>
+  <ellipse cx="120" cy="185" rx="40" ry="16" fill="#efb9d2"/>
+  <ellipse cx="190" cy="172" rx="36" ry="15" fill="#f2a9c8"/>
+  <ellipse cx="260" cy="188" rx="42" ry="17" fill="#eeaecb"/>
+  <ellipse cx="330" cy="176" rx="34" ry="14" fill="#f2a9c8"/>
+  <ellipse cx="90" cy="210" rx="46" ry="18" fill="#eeaecb"/>
+  <ellipse cx="170" cy="220" rx="50" ry="20" fill="#f2a9c8"/>
+  <ellipse cx="250" cy="212" rx="46" ry="18" fill="#efb9d2"/>
+  <ellipse cx="330" cy="222" rx="44" ry="18" fill="#f2a9c8"/>
+  <ellipse cx="40" cy="235" rx="40" ry="16" fill="#efb9d2"/>
+  <ellipse cx="190" cy="245" rx="52" ry="18" fill="#eeaecb"/>
+  <ellipse cx="330" cy="245" rx="46" ry="16" fill="#f2a9c8"/>
+</svg>
